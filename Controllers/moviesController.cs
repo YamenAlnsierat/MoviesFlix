@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using movieflix_api.Data;
 using movieflix_api.Models;
 
 namespace movieflix_api.Controllers
@@ -12,9 +13,11 @@ namespace movieflix_api.Controllers
     public class moviesController : ControllerBase
     {
         [HttpGet()]
-        public ActionResult<IEnumerable<Movie>>ListMovies()
+        public async Task<ActionResult<IEnumerable<Movie>>>ListMovies()
         {
-            return Ok(new List<string>());
+           var movies = await LoadData.LoadMovies();
+
+           return Ok(movies);
         }
     
         [HttpGet("{title}")]
