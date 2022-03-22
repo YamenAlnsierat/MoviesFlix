@@ -19,6 +19,11 @@ namespace movieflix_api.Controllers
 
            return Ok(movies);
         }
+
+        [HttpPost()]
+        public ActionResult<Movie> AddMovies(Movie movie){
+            return new Movie();
+        }
     
         [HttpGet("{title}")]
         public ActionResult<Movie> myMovie(string title)
